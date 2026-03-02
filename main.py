@@ -133,7 +133,7 @@ async def get_access_token(uid, password):
     async with aiohttp.ClientSession() as session:
         async with session.post(url, headers=headers, data=data) as response:
             if response.status != 200:
-                return "Failed to get access token"
+                return (None, None)
             data = await response.json()
             open_id = data.get("open_id")
             access_token = data.get("access_token")
